@@ -1,0 +1,39 @@
+version: '2.4'
+services:
+  orion-api:
+    container_name: orion-api
+    extends:
+      file: docker-compose.common.yml
+      service: api
+    ports:
+      - "8080:8080"
+    environment:
+      - ORION_REDIS_HOST=redis
+      - ORION_REDIS_PORT=6379
+    networks:
+      - backend
+  
+  redis:
+    container_name: redis
+    extends:
+      file: docker-compose.common.yml
+      service: redis
+    ports:
+      - "6379:6379"
+
+  postgres:
+    container_name: postgres
+    extends:
+      file: docker-compose.common.yml
+      service: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=orion
+      - POSTGRES_USER=orion
+      - POSTGRES_PASSWORD=orion
+    networks:
+      - backend
+
+networks:
+  backend:

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+
+rm -rf api/v1
+mkdir api/v1
+
+oapi-codegen -generate chi-server,types,client,spec -package v1 -o api/v1/api.go api/spec/v1_routes.yml

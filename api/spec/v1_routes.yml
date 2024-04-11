@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: IAM API
+  description: |-
+    Base IAM API Definition
+  contact:
+    email: kevin@shapley.io
+  version: 0.0.1
+servers:
+  - url: https://iam.shapley.io
+  - url: https://iam.stg.shapley.io
+  - url: https://sso.shapley.io
+  - url: https://sso.stg.shapley.io
+  - url: http://localhost:8080
+  - url: http://127.0.0.1:8080
+tags:
+  - name: Identity
+    description: Operations around managing Users
+  - name: AuthN
+    description: Operations around managing User Authentication
+  - name: AuthZ
+    description: Operations around managing User Authorization
+  - name: Health
+    description: Operations around managing Health Checks
+
+paths:
+  /v1/user:
+    post:
+      tags:
+        - Identity
+      summary: Create a User
+      description: Create a User
+      operationId: createUser
+      requestBody:
+        description: "A user object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Found User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      tags:
+        - Identity
+      summary: Get a User
+      description: Get a User
+      operationId: getUser
+      parameters:
+        - name: email
+          in: query
+          description: Email of user to get
+          required: true
+          schema:
+            type: string
+            format: email
+      responses:
+        '200':
+          description: Found User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+        - Identity
+      summary: Update a User
+      description: Update a User
+      operationId: updateUser
+      parameters:
+        - name: email
+          in: query
+          description: Email of user to update
+          required: true
+          schema:
+            type: string
+            format: email
+      requestBody:
+        description: "A user object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Updated User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      tags:
+        - Identity
+      summary: Delete a User
+      description: Delete a User
+      operationId: deleteUser
+      parameters:
+        - name: email
+          in: query
+          description: Email of user to delete
+          required: true
+          schema:
+            type: string
+            format: email
+      responses:
+        '201':
+          description: Marks User for Deletion
+  /v1/user/password:
+    put:
+      tags:
+        - Identity
+      summary: Update a User's Password
+      description: Update a User's Password
+      operationId: updateUserPassword
+      requestBody:
+        description: "A login object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '200':
+          description: Updated User Password
+
+  /v1/login:
+    post:
+      tags:
+        - AuthN
+      summary: Login
+      description: Login
+      operationId: login
+      requestBody:
+        description: "A login object"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        '302':
+          description: Redirect to SSO to Continue Login Process
+          headers:
+            Location:
+              description: Redirection to SSO to Continue Login Process
+              schema:
+                type: string
+                format: uri
+
+  /v1/health/alive:
+    get:
+      tags:
+        - Health
+      summary: Health Check
+      description: Health Check
+      operationId: healthAlive
+      responses:
+        '200':
+          description: Service is Alive
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "alive"
+        '503':
+          description: Service is Dead
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "dead"
+  /v1/health/ready:
+    get:
+      tags:
+        - Health
+      summary: Health Check
+      description: Health Check
+      operationId: healthReady
+      responses:
+        '200':
+          description: Service is Ready
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ready"
+        '503':
+          description: Service is Not Ready
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "not ready"
+
+    
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+      required:
+        - first_name
+        - last_name
+        - email
+    Login:
+      type: object
+      properties:
+        login_verifier:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+      required:
+        - login_verifier
+        - email
+        - password

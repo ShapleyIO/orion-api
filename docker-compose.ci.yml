@@ -1,0 +1,11 @@
+version: '2.4'
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    image: shapley/builder:${REVISION:-development}
+    tty: true
+    volumes:
+      - .:/go/src/github.com/ShapleyIO/shapley-orion-api

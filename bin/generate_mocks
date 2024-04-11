@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Remove the mocks directory
+rm -rf mocks
+
+# Create the mocks directory
+mkdir mocks
+
+export GOPATH=$(go env GOPATH)
+export PATH=$GOPATH/bin:$PATH
+
+GOFLAGS=-mod=mod
+
+go install github.com/golang/mock/mockgen@latest
+
+# Generate the mock for redis.Client
+mockgen -destination=mocks/redis_mock.go github.com/go-redis/redis Client
+
+echo "Mock for redis.Client generated successfully!"

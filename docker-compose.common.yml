@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+      args:
+        - REVISION=${REVISION:-development}
+        - VERSION=${VERSION:-development}
+    image: shapley/orion-api:${REVISION:-development}
+    tty: true
+  redis:
+    image: redis:bookworm
+    tty: true
+  postgres:
+    image: postgres:14.0
+    tty: true
