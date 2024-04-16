@@ -3,11 +3,11 @@ package api
 import (
 	"fmt"
 
-	"github.com/ShapleyIO/orion-api/api/handlers/authn"
-	"github.com/ShapleyIO/orion-api/api/handlers/health"
-	"github.com/ShapleyIO/orion-api/api/handlers/identity"
-	v1 "github.com/ShapleyIO/orion-api/api/v1"
-	"github.com/ShapleyIO/orion-api/internal/config"
+	"github.com/ShapleyIO/shapley.io-api/api/handlers/authn"
+	"github.com/ShapleyIO/shapley.io-api/api/handlers/health"
+	"github.com/ShapleyIO/shapley.io-api/api/handlers/identity"
+	v1 "github.com/ShapleyIO/shapley.io-api/api/v1"
+	"github.com/ShapleyIO/shapley.io-api/internal/config"
 	"github.com/redis/go-redis/v9"
 )
 

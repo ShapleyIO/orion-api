@@ -5,10 +5,10 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/ShapleyIO/orion-api/api/handlers/identity"
-	"github.com/ShapleyIO/orion-api/api/middleware"
-	v1 "github.com/ShapleyIO/orion-api/api/v1"
-	"github.com/ShapleyIO/orion-api/internal/passwordhasher"
+	"github.com/ShapleyIO/shapley.io-api/api/handlers/identity"
+	"github.com/ShapleyIO/shapley.io-api/api/middleware"
+	v1 "github.com/ShapleyIO/shapley.io-api/api/v1"
+	"github.com/ShapleyIO/shapley.io-api/internal/passwordhasher"
 	"github.com/redis/go-redis/v9"
 )
 

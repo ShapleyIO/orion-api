@@ -8,4 +8,4 @@ services:
     image: shapley/builder:${REVISION:-development}
     tty: true
     volumes:
-      - .:/go/src/github.com/ShapleyIO/shapley-orion-api
+      - .:/go/src/github.com/ShapleyIO/shapley-shapley.io-api

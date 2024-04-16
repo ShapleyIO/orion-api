@@ -1,15 +1,15 @@
 version: '2.4'
 services:
-  orion-api:
-    container_name: orion-api
+  shapley.io-api:
+    container_name: shapley.io-api
     extends:
       file: docker-compose.common.yml
       service: api
     ports:
       - "8080:8080"
     environment:
-      - ORION_REDIS_HOST=redis
-      - ORION_REDIS_PORT=6379
+      - SHAPLEY_IO_REDIS_HOST=redis
+      - SHAPLEY_IO_REDIS_PORT=6379
     networks:
       - backend
   
@@ -29,9 +29,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=orion
-      - POSTGRES_USER=orion
-      - POSTGRES_PASSWORD=orion
+      - POSTGRES_DB=shapley_io
+      - POSTGRES_USER=shapley_io
+      - POSTGRES_PASSWORD=shapley_io
     networks:
       - backend
 

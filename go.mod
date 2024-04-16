@@ -1,4 +1,4 @@
-module github.com/ShapleyIO/orion-api
+module github.com/ShapleyIO/shapley.io-api
 
 go 1.22.1
 

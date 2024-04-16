@@ -7,7 +7,7 @@ RUN mkdir ~/.ssh
 RUN ssh-keyscan github.com >> ~/.ssh/known_hosts \
     git config --global url."git@github.com".insteadOf "https://github.com"
 
-ENV PROJECT shapley-orion-api
+ENV PROJECT shapley-shapley.io-api
 WORKDIR $GOPATH/src/github.com/ShapleyIO/$PROJECT
 RUN git config --global --add safe.directory $GOPATH/src/github.com/ShapleyIO/$PROJECT
 
@@ -40,7 +40,7 @@ FROM golang-builder as api-builder
 RUN --mount=type=cache,target=/root/.cache/go-build bin/build
 
 FROM golang:1.22.1 as api
-COPY --from=api-builder /go/src/github.com/ShapleyIO/shapley-orion-api/dist/orion-api /usr/bin/orion-api
+COPY --from=api-builder /go/src/github.com/ShapleyIO/shapley-shapley.io-api/dist/shapley.io-api /usr/bin/shapley.io-api
 ENV INTERFACE="[::]"
 EXPOSE 8080
-ENTRYPOINT [ "orion-api" ]
+ENTRYPOINT [ "shapley.io-api" ]

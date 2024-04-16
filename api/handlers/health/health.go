@@ -3,7 +3,7 @@ package health
 import (
 	"net/http"
 
-	"github.com/ShapleyIO/orion-api/api/middleware"
+	"github.com/ShapleyIO/shapley.io-api/api/middleware"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -3,8 +3,8 @@ package connect
 import (
 	"strings"
 
-	"github.com/ShapleyIO/orion-api/api"
-	"github.com/ShapleyIO/orion-api/internal/config"
+	"github.com/ShapleyIO/shapley.io-api/api"
+	"github.com/ShapleyIO/shapley.io-api/internal/config"
 )
 
 type Services struct {

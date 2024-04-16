@@ -8,7 +8,7 @@ services:
       args:
         - REVISION=${REVISION:-development}
         - VERSION=${VERSION:-development}
-    image: shapley/orion-api:${REVISION:-development}
+    image: shapley/shapley.io-api:${REVISION:-development}
     tty: true
   redis:
     image: redis:bookworm

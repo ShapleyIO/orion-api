@@ -1,20 +1,20 @@
-# deployment.yaml for orion-api
+# deployment.yaml for shapley.io-api
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orion-api
+  name: shapley.io-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orion-api
+      app: shapley.io-api
   template:
     metadata:
       labels:
-        app: orion-api
+        app: shapley.io-api
     spec:
       containers:
-      - name: orion-api
-        image: orion-api:latest
+      - name: shapley.io-api
+        image: shapley.io-api:latest
         ports:
         - containerPort: 8080

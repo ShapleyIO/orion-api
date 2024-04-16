@@ -3,10 +3,10 @@ package main
 import (
 	"net/http"
 
-	"github.com/ShapleyIO/orion-api/api/middleware"
-	apiV1 "github.com/ShapleyIO/orion-api/api/v1"
-	"github.com/ShapleyIO/orion-api/internal/config"
-	"github.com/ShapleyIO/orion-api/internal/connect"
+	"github.com/ShapleyIO/shapley.io-api/api/middleware"
+	apiV1 "github.com/ShapleyIO/shapley.io-api/api/v1"
+	"github.com/ShapleyIO/shapley.io-api/internal/config"
+	"github.com/ShapleyIO/shapley.io-api/internal/connect"
 	"github.com/go-chi/chi/v5"
 	chi_middleware "github.com/oapi-codegen/nethttp-middleware"
 	"github.com/rs/zerolog"

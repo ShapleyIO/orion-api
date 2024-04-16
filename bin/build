@@ -4,4 +4,4 @@ set -euo pipefail
 
 rm -rf dist
 mkdir dist
-go build -o dist/orion-api cmd/api/main.go
+go build -o dist/shapley.io-api cmd/api/main.go
